@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+{% block title %}{{ show.title }}'s actors and characters{% endblock %}
+{% block content %}
+
+    <script type="module" src="/static/js/actor.js" defer></script>
+
+
+<div class="card">
+    <h2>Actors and characters</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Character</th>
+                <th>Actor</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for actor in actors %}
+            <tr" style="text-align: center">
+                <td class="character">
+                {{ actor.character_name }}
+                </td>
+                <td id="{{ actor.actor_id }}" class="actor">
+                <a href="/actor/{{ actor.actor_id }}">
+                {{ actor.name }}</a></td>
+                <td></td>
+            </tr>
+            {% endfor %}
+
+        <button type="button" style="display:inline" id="shortenFirstNameButton">Shorten first name</button>
+
+
+        </tbody>
+    </table>
+</div>
+
+<div hidden>
+    <div id="show_id">{{ show_id }}</div>
+</div>
+
+{% endblock %}

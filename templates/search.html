@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+{% block title %}Codecool Series Database{% endblock %}
+{% block content %}
+<h1 class="title text-center">Search resaults of <b>"{{ search_phrase }}"</b></h1>
+<div class="card">
+    <ul>
+        {% for show in shows %}
+        <li>
+            <a href="{{ '/show/' + (show['id'] | string) }}">{{ show['title'] }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

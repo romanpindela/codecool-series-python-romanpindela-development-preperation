@@ -1,0 +1,58 @@
+ZADANIA wymyślone do przećwiczenia sobie modułu web
+
+{zrobione}
+rejestracja i logowanie
+
+wyświetlanie episodów w sezonu
+@app.route("/show/<int:show_id>/<int:season_id>")
+
+edytowania episodu - button
+usuwanie episodu - button
+
+dodawanie episodu
+@app.route("/add_episode", methods=["POST"])
+
+edytowanie episodu
+
+wyszukiwarka
+@app.route("/shows/<phrase>")
+
+
+==================
+{niezrobione ale analogiczne do zrobionych}
+dodawanie nowego sezonu
+@app.route("/add_new_season", methods=["POST"])
+
+dodawanie akatora
+@app.route("/actor/add", methods=["POST"])
+
+edytowanie aktora
+@app.route("/edit_actor/<int:actor_id>", methods=["GET", "POST"])
+
+
+----------------
+
+{do zrobienia}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+
+edytowanie show
+@app.route("/edit", methods=["GET", "POST"])
+edytowanie episode
+
+??????????????????????????????????????
+
+wyświetlanie aktorów
+@app.route("/show/<int:show_id>/actors")
+
+
+
+
+{zadania z pa}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+
+{zestaw 1}
+1. Create a page, together with a new route /shows/{show_id}/actors, that shows the actors names from the show with the played character name, sorted by actor name.
+
+2. Add a button with text “Shorten first name” at the end of the page, after clicking this button, without page reload, change displayed actors' real names to contain the first letter of first name, then dot and surname afterwards. Example: Anthony Daniels should be changed to A. Daniels
+
+3.Add a link to the actor name that will open a new page with a form that will enable to change the actor name. After submitting the form the name should be changed in the database.
+
+{zestaw 2}

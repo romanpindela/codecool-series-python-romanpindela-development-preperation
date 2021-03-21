@@ -1,0 +1,80 @@
+{% extends 'layout.html' %}
+{% block title %} Codecool Series Database{% endblock %}
+{% block content %}
+
+<script type="module" src="/static/js/episode.js" defer></script>
+
+<h1 class="title text-center">{{ show.title }} - {{ season.title }}</h1>
+<div class="card">
+    <h2>{{ show.title }}'s overview:</h2>
+    <p>{{ show.overview }}</p>
+    <p></p>
+    {% if season.overview %}
+        <h2>{{ season.title }}'s overview:</h2>
+        <p>{{ season.overview }}</p>
+        <p></p>
+    {% endif %}
+
+</div>
+
+<div class="card">
+    List of {{ season.title }}'s episodes:
+    <table>
+        <thead>
+            <tr>
+                <th>nr</th>
+                <th style="width:80%">episode title</th>
+                <th class="action-column">edit / delete</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        {% for episode in episodes %}
+            <tr>
+                <td style="text-align: center">
+                {{ episode.episode_number }}</td>
+
+                <td><a href="/show/{{ show.id }}/{{ season.season_number }}/{{ episode.episode_number }}">
+                {{ episode.title }}</a></td>
+                <td style="text-align: center" class="action-column">
+                    <button class="editEpisodeButton" type="button" class="icon-button"><i  id="{{ episode.episode_number }}" class="fa fa-edit fa-fw"></i></button>
+                    <button class="deleteEpisodeButton" type="button" class="icon-button"><i  id="{{ episode.episode_number }}" class="fa fa-trash fa-fw"></i></button>
+                </td>
+            </tr>
+            <tr id="tr{{ episode.episode_number }}" hidden>
+                <td></td>
+                <td>
+                    <input id="inputEpisodeTitle.{{ episode.episode_number }}" type="text" placeholder="{{ episode.title }}" style="display:inline" autofocus>
+                    <button type="button" class="ok-button" style="display:inline" id="Ok.{{  episode.episode_number  }}">Ok</button>
+                    <button type="button" class="cancel-button" style="display:inline" id="Cancel.{{  episode.episode_number  }}">Cancel</button>
+                </td>
+                <td></td>
+            </tr>
+
+        {% endfor %}
+        <tr>
+            <td></td>
+            <td id="addEpisodeButton">&#10133 (add new episode)</td>
+            <td></td>
+        </tr>
+        <tr id="trNewEpisode" hidden>
+            <td>
+                <input id="inputEpisodeNumber.newEpisodeNr" type="text" placeholder="nr" style="display:inline; width:50px" autofocus>
+            </td>
+            <td>
+                <input id="inputEpisodeTitle.newEpisodeTitle" type="text" placeholder="new episode name" style="display:inline" >
+                <button type="button" class="okNewEpisode" style="display:inline" id="Ok.newEpisode">Ok</button>
+                <button type="button" class="cancelNewEpisode" style="display:inline" id="Cancel.newEpisode">Cancel</button>
+            </td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div hidden>
+ <span id="show_id">{{ show.id }}</span>
+ <span id="season_nr">{{ season.season_number }}</span>
+</div>
+
+{% endblock %}

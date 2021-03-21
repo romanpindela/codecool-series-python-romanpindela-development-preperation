@@ -31,8 +31,12 @@
     <!-- page specific styling -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style/pagination.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='style/detailed-view.css') }}">
-</head>
 
+    <script type="module" src="/static/js/registerAndLogin.js" defer></script>
+    <!-- <script type="module" src="/static/js/search.js" defer></script> -->
+
+</head>
+<body id="body">
 <div id="body-wrapper">
     <header class="clearfix">
         <a href="/"><img id="header-logo" src="{{ url_for('static', filename='assets/codecool-logo.png') }}"
@@ -40,12 +44,30 @@
         <a href="/" id="header-title" class="title">
             Codecool Series Database
         </a>
+
         <div id="header-auth">
             <button type="button" id="bt_register">Register</button>
             <button type="button" id="bt_login">Login</button>
+            <div id="formInfo" hidden>
+                <br>
+                <u>(double click to hide input forms)</u>
+                <br>
+            </div>
+            <input name="login" id="inputEmail" type="hidden" placeholder="email address" required autofocus>
+            <input name="password" type="hidden" id="inputPassword" placeholder="password" required>
+
         </div>
+
+
     </header>
+
     <section>
+            <div id="search">
+            <form action="{{ url_for("search") }}" method="POST">
+                <input name="search" id="searchInput" type="text" placeholder="search for show's title" autofocus>
+             <button type="submit" id="searchButton" style="color:white">Search</button>
+            </form>
+            </div>
         {% block content %}
         {% endblock %}
     </section>
@@ -58,4 +80,6 @@
     <div class="dark-blue-layer"></div>
     <div class="light-blue-layer"></div>
 </div>
+
+
 </body>

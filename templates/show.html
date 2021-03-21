@@ -2,6 +2,9 @@
 {% block title %}{{ show.title }}{% endblock %}
 {% block content %}
 
+    <script type="module" src="/static/js/seasons.js" defer></script>
+
+
 <div class="card detailed-view">
     <script type="text/javascript">
         var videoId = '{{ show.trailer_id }}';
@@ -21,6 +24,8 @@
         <div {% if show.trailer %} id="player" {% endif %} class="trailer col col-third"></div>
     </div>
 </div>
+
+
 <div class="card">
     <h2>Seasons</h2>
     <table>
@@ -34,12 +39,45 @@
         <tbody>
             {% for season in seasons %}
             <tr>
-                <td>{{ season.season_number }}</td>
-                <td>{{ season.title }}</td>
+                <td>
+                {{ season.season_number }}
+                </td>
+                <td><a href="/show/{{ show.id }}/{{ season.season_number }}">
+                {{ season.title }}</a></td>
                 <td>{{ season.overview }}</td>
             </tr>
             {% endfor %}
+
+        <tr>
+            <td></td>
+            <td></td>
+            <td id="addSeasonButton">&#10133 (add new season)</td>
+        </tr>
+
+        <tr id="newSeasonTr" hidden>
+            <td colspan="3">
+                <form>
+                <input id="inputNewEpisodeID" type="text" placeholder="id" style="display:inline; width:30px" >
+                <input id="inputNewEpisodeSeasonNumber" type="text" placeholder="season number" style="display:inline; width:120px" >
+                <input id="inputNewEpisodeSeasonTitle" type="text" placeholder="season title" style="display:inline; width:220px" >
+                <input id="inputNewEpisodeSeasonOverview" type="text" placeholder="overview" style="display:inline; width:320px" >
+
+                <button type="button" class="okNewSeason" style="display:inline" id="OkNewEpisodeButton">Ok</button>
+                <button type="button" class="cancelNewSeason" style="display:inline" id="CancelNewEpisodeButton">Cancel</button>
+                </form>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+
         </tbody>
     </table>
 </div>
+
+
+
+
+    <div hidden>
+    <div id="show_id">{{ show.id }}</div>
+    </div>
 {% endblock %}

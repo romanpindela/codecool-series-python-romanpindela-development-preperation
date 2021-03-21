@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+{% block title %}{{ episode.title }} - {{ season.title }} ({{ show.title }}){% endblock %}
+{% block content %}
+{## new route to one show#}
+
+    <script type="module" src="/static/js/actors_from_api.js" defer></script>
+
+<div class="card">
+    <h2>{{ episode.title }} - {{ season.title }} ({{ show.title }})</h2>
+     <button type="button"  style="display:inline" id="getActorsFromApiButton">Show actors</button>
+
+    <table id="actorsCharacterTable" hidden>
+        <thead>
+            <tr>
+                <th>Actor</th>
+                <th>Character</th>
+            </tr>
+        </thead>
+        <tbody id="actorsCharactersTableBody">
+
+        </tbody>
+    </table>
+
+<div hidden>
+    <div id="show_id">{{ show.id }}</div>
+    <div id="season_id">{{ season.id }}</div>
+    <div id="episode_id">{{ episode.id }}</div>
+</div>
+
+</div>
+{% endblock %}

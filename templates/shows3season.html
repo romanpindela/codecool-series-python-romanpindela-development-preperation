@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+{% block title %}Shows{% endblock %}
+{% block content %}
+
+        <script type="module" src="/static/js/actorOfADay.js" defer></script>
+
+<h1 class="title text-center">Shows</h1>
+<div class="card">
+
+        <button type="button" style="display:inline" id="actorOfADayButton">Actor of a day</button>
+
+    <table id="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Raiting</th>
+                <th>3'th season overview</th>
+            </tr>
+        </thead>
+        <tbody id="table-body">
+            {% for show in shows %}
+            {% if show.overview %}
+            <tr>
+                <td>{{ show.title }}</td>
+                <td>{{ show.rating }}</td>
+                <td>{{ show.overview }}</td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
